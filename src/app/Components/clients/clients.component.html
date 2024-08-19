@@ -1,0 +1,133 @@
+<!-- clients.component.html -->
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <!-- Small Navbar with Icons -->
+      <div>
+        <button class="btn btn-light" (click)="toggleSettings()">
+          <i class="bi bi-gear"></i>
+        </button>
+        <button class="btn btn-light" (click)="searchClients()">
+          <i class="bi bi-search"></i>
+        </button>
+        <button class="btn btn-light" (click)="printClients()">
+          <i class="bi bi-printer"></i>
+        </button>
+        <button class="btn btn-light" routerLink="/AddClient">
+          <i class="bi bi-plus"></i>
+          Add Client
+        </button>
+      </div>
+      <div>
+        <span>Total Clients: {{totalCount}}</span>
+      </div>
+    </div>
+    
+    <!-- Settings Dropdown Menu -->
+    <div *ngIf="showSettings" class="p-3">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="nameCheck" [(ngModel)]="displayColumns.name">
+        <label class="form-check-label" for="nameCheck">Name</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="residenceCheck" [(ngModel)]="displayColumns.Resdience">
+        <label class="form-check-label" for="residenceCheck">Residence</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="dateAddedCheck" [(ngModel)]="displayColumns.DateAdded">
+        <label class="form-check-label" for="dateAddedCheck">Date Added</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="addedByCheck" [(ngModel)]="displayColumns.AddedBy">
+        <label class="form-check-label" for="addedByCheck">Added By</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="modifiedByCheck" [(ngModel)]="displayColumns.ModifiedBy">
+        <label class="form-check-label" for="modifiedByCheck">Modified By</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="dateModifiedCheck" [(ngModel)]="displayColumns.dateModified">
+        <label class="form-check-label" for="dateModifiedCheck">Date Modified</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="jobCheck" [(ngModel)]="displayColumns.Job">
+        <label class="form-check-label" for="jobCheck">Job</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="salesManCheck" [(ngModel)]="displayColumns.SalesMan">
+        <label class="form-check-label" for="salesManCheck">Salesman</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="clientClassificationCheck" [(ngModel)]="displayColumns.ClientClassification">
+        <label class="form-check-label" for="clientClassificationCheck">Client Classification</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="descriptionCheck" [(ngModel)]="displayColumns.Description">
+        <label class="form-check-label" for="descriptionCheck">Description</label>
+      </div>
+    </div>
+
+    <!-- Table with Client Information -->
+    <div class="card-body">
+      <table class="table table-bordered mt-3">
+        <thead>
+          <tr>
+            <th></th> <!-- For the plus icon -->
+            <th *ngIf="displayColumns.name">Name</th>
+            <th *ngIf="displayColumns.Resdience">Residence</th>
+            <th *ngIf="displayColumns.DateAdded">Date Added</th>
+            <th *ngIf="displayColumns.AddedBy">Added By</th>
+            <th *ngIf="displayColumns.ModifiedBy">Modified By</th>
+            <th *ngIf="displayColumns.dateModified">Date Modified</th>
+            <th *ngIf="displayColumns.Job">Job</th>
+            <th *ngIf="displayColumns.SalesMan">Salesman</th>
+            <th *ngIf="displayColumns.ClientClassification">Client Classification</th>
+            <th *ngIf="displayColumns.Description">Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let client of clients">
+            <td>
+              <button class="btn btn-primary btn-sm" (click)="toggleClientCalls(client.id)">
+                {{ showClientCalls[client.id] ? '-' : '+' }}
+              </button>
+            </td>
+            <td *ngIf="displayColumns.name">{{ client.name }}</td>
+            <td *ngIf="displayColumns.Resdience">{{ client.residence }}</td>
+            <td *ngIf="displayColumns.DateAdded">{{ client.dateAdded }}</td>
+            <td *ngIf="displayColumns.AddedBy">{{ client.addedBy }}</td>
+            <td *ngIf="displayColumns.ModifiedBy">{{ client.modifiedBy }}</td>
+            <td *ngIf="displayColumns.dateModified">{{ client.dateModified }}</td>
+            <td *ngIf="displayColumns.Job">{{ client.job }}</td>
+            <td *ngIf="displayColumns.SalesMan">{{ client.SalesMan }}</td>
+            <td *ngIf="displayColumns.ClientClassification">{{ client.ClientClassification }}</td>
+            <td *ngIf="displayColumns.Description">{{ client.Description }}</td>
+            <td>
+              <button class="btn btn-warning btn-sm" routerLink="/EditClient">
+                Edit
+              </button>
+              <button class="btn btn-danger btn-sm" (click)="deleteClient(client)">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <!-- Pagination Controls -->
+      <div class="d-flex justify-content-between mt-3">
+        <button class="btn btn-secondary" (click)="previousPage()" [disabled]="!hasPreviousPage">
+          Previous
+        </button>
+        <button class="btn btn-secondary" (click)="nextPage()" [disabled]="!hasNextPage">
+          Next
+        </button>
+      </div>
+    </div>
+    <div>
+      <span>Total Clients: {{totalCount}}</span>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
