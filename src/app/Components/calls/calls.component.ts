@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CallsComponent implements OnInit {
   @Input() clientId!: number;
+
   calls: ICallDto[]=[];
   totalCount: number = 0;
   page: number = 1;
@@ -33,10 +34,17 @@ export class CallsComponent implements OnInit {
   {
     this._APIClientsService.getCallsofClient(this.clientId, this.page, this.pageSize).subscribe({
       next: (res: any) => {
-        this.calls = res.items; 
+        this.calls = res.items.map((call:any)=>({
+          Employee:call.employee,
+          Project:call.project,
+          CallHistory: call.callHistory,
+          TypeOfCall:call.typeOfCall,
+          Description:call.description
+        })); 
         this.totalCount = res.totalCount; 
         this.hasNextPage = res.hasNextPage;
         this.hasPreviousPage = res.hasPreviousPage;
+       
       },
       error: (err) => {
         console.error(err);

@@ -4,12 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { IClient } from '../../models/iclient';
 import { APIClientsService } from '../../service/apiclients.service';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { CallsComponent } from '../calls/calls.component';
 
 @Component({
   selector: 'app-clients',
   templateUrl: './clients.component.html',
   standalone: true,
-  imports: [CommonModule, FormsModule,RouterOutlet,RouterLink], 
+  imports: [CommonModule, FormsModule,RouterOutlet,RouterLink,CallsComponent], 
   styleUrls: ['./clients.component.css'],
 })
 export class ClientsComponent implements OnInit {
@@ -33,9 +34,7 @@ export class ClientsComponent implements OnInit {
   toggleClientCalls(clientId: number) {
     this.showClientCalls[clientId] = !this.showClientCalls[clientId];
   }
-  toggleShowCalls(clientId: number) {
-    this.showClientCalls[clientId] = !this.showClientCalls[clientId];
-  }
+
 
   loadClient()
   {
@@ -44,6 +43,7 @@ export class ClientsComponent implements OnInit {
         console.log(res);
         this.clients = res.items.map((client: any) => ({
           name: client.اسم_العميل,
+          id: client.id,
           residence: client.الاقامة,
           job: client.الوظيفة,
           addedBy: client.أضيف_بواسطة,

@@ -1,0 +1,29 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Job</th>
+      <th>Date of Birth</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let user of users">
+      <tr>
+        <td>{{ user.name }}</td>
+        <td>{{ user.job }}</td>
+        <td>{{ user.dateOfBirth }}</td>
+        <td>
+          <button (click)="toggleCallsTable(user)">
+            {{ user.showCallsTable ? 'Hide Calls' : 'Show Calls' }}
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="user.showCallsTable">
+        <td colspan="4">
+          <app-calls-table [userId]="user.id"></app-calls-table>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>

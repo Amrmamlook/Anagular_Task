@@ -87,11 +87,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let client of clients">
+        <ng-container *ngFor="let client of clients">  
+          <tr>
             <td>
               <button class="btn btn-primary btn-sm" (click)="toggleClientCalls(client.id)">
-                {{ showClientCalls[client.id] ? '-' : '+' }}
+                {{ showClientCalls[client.id] ? 'Hide Calls' : 'Show Calls' }}
               </button>
+
             </td>
             <td *ngIf="displayColumns.name">{{ client.name }}</td>
             <td *ngIf="displayColumns.Resdience">{{ client.residence }}</td>
@@ -112,6 +114,12 @@
               </button>
             </td>
           </tr>
+          <tr  *ngIf="showClientCalls[client.id]">
+            <td colspan="4">
+              <app-calls [clientId]="client.id"></app-calls>
+            </td>
+          </tr>
+        </ng-container>
         </tbody>
       </table>
       
