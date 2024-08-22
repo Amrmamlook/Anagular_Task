@@ -25,7 +25,7 @@ export class APIClientsService {
   }
   
   getCallsofClient(clientId: number, pageNumber: number = 1, pageSize: number = 5): Observable<ICallDto[]> {
-    const url = `http://localhost:5161/api/client/calls?clientId=${clientId}&pageNumber=${pageNumber}&pageSize=${pageSize}`;
+    const url = `http://localhost:5161/api/Calls?clientId=${clientId}&pageNumber=${pageNumber}&pageSize=${pageSize}`;
     return this.http.get<ICallDto[]>(url);
   }
   addClient(newClie: IClientAdd): Observable<any> {

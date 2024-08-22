@@ -107,10 +107,10 @@
             <td *ngIf="displayColumns.Description">{{ client.Description }}</td>
             <td>
               <button class="btn btn-warning btn-sm" routerLink="/EditClient">
-                Edit
+                <i class="fas fa-edit"></i> 
               </button>
               <button class="btn btn-danger btn-sm" (click)="deleteClient(client)">
-                Delete
+                <i class="fas fa-trash-alt"></i> 
               </button>
             </td>
           </tr>
