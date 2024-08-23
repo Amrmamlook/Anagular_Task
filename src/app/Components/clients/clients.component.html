@@ -87,7 +87,7 @@
           </tr>
         </thead>
         <tbody>
-        <ng-container *ngFor="let client of clients">  
+        <ng-container *ngFor="let client of clients; trackBy: trackByItems">  
           <tr>
             <td>
               <button class="btn btn-primary btn-sm" (click)="toggleClientCalls(client.id)">
@@ -134,7 +134,7 @@
       </div>
     </div>
     <div>
-      <span>Total Clients: {{totalCount}}</span>
+      <span>Total Current Clients: {{ clients.length }}</span>
     </div>
   </div>
 </div>

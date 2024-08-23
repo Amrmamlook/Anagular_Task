@@ -32,6 +32,8 @@ export class CallsComponent implements OnInit {
   }
   loadCalls()
   {
+
+    if(this.page <= 0 || this.pageSize <=0) return;
     this._APIClientsService.getCallsofClient(this.clientId, this.page, this.pageSize).subscribe({
       next: (res: any) => {
         this.calls = res.items.map((call:any)=>({
@@ -53,14 +55,14 @@ export class CallsComponent implements OnInit {
   }
 
   nextPage() {
-    if (this.hasNextPage) {
+    if (this.page<=0 ||this.pageSize <=0 ||this.hasNextPage) {
       this.page++;
       this.loadCalls();
     }
   }
 
   previousPage() {
-    if (this.hasPreviousPage) {
+    if (this.page <=0 || this.pageSize<=0 ||this.hasPreviousPage) {
       this.page--;
       this.loadCalls();
     }

@@ -38,6 +38,8 @@ export class ClientsComponent implements OnInit {
 
   loadClient()
   {
+    if (this.page <= 0 || this.pageSize <= 0) return;
+      
     this._APIClientsService.getClients(this.page,this.pageSize).subscribe({
       next: (res: any) => {
         console.log(res);
@@ -54,7 +56,9 @@ export class ClientsComponent implements OnInit {
           ClientClassification:client.التصنيف,
           Description: client.التوصيف,
         }));
-          this.totalCount = res.pageSize;
+          this.totalCount = res.totalCount;
+          const actualPageSize = this.clients.length;
+          console.log(`Current page has ${actualPageSize} items out of ${this.pageSize}`);
           this.hasNextPage= res.hasNextPage,
           this.hasPreviousPage= res.hasPerviousPage
       },
@@ -63,6 +67,12 @@ export class ClientsComponent implements OnInit {
       }
     });
   }
+
+  trackByItems(index:number ,item:IClient)
+  {
+      return item.id
+  }
+
   showSettings = false; 
   displayColumns = {
     name: true,
@@ -81,13 +91,13 @@ export class ClientsComponent implements OnInit {
     this.showSettings = !this.showSettings;
   }
   nextPage() {
-    if (this.hasNextPage) {
+    if (this.page <= 0 || this.pageSize <= 0 || this.hasPreviousPage) {
       this.page++;
       this.loadClient();
     }
   }
   previousPage() {
-    if (this.hasPreviousPage) {
+    if (this.page <= 0 || this.pageSize <= 0 || this.hasPreviousPage) {
       this.page--;
       this.loadClient();
     }
