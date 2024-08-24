@@ -106,7 +106,7 @@
             <td *ngIf="displayColumns.ClientClassification">{{ client.ClientClassification }}</td>
             <td *ngIf="displayColumns.Description">{{ client.Description }}</td>
             <td>
-              <button class="btn btn-warning btn-sm" routerLink="/EditClient">
+              <button class="btn btn-warning btn-sm" [routerLink]="['/EditClient', client.id]">
                 <i class="fas fa-edit"></i> 
               </button>
               <button class="btn btn-danger btn-sm" (click)="deleteClient(client)">

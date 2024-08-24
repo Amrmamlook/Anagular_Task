@@ -1,0 +1,137 @@
+<div *ngIf="newClient" class="container mt-4">
+  <h2 class="mb-4">Update Client Information</h2>
+  <form (ngSubmit)="updateClient()" class="needs-validation" novalidate>
+    
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="name">Name</label>
+          <input type="text" id="name" [(ngModel)]="newClient.name" name="name" class="form-control" required>
+          <div class="invalid-feedback">Please enter the client's name.</div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="district">District</label>
+          <input type="text" id="district" [(ngModel)]="newClient.district" name="district" class="form-control" required>
+          <div class="invalid-feedback">Please enter the district.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="address">Address</label>
+          <input type="text" id="address" [(ngModel)]="newClient.address" name="address" class="form-control" required>
+          <div class="invalid-feedback">Please enter the address.</div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="nationality">Nationality</label>
+          <input type="text" id="nationality" [(ngModel)]="newClient.nationality" name="nationality" class="form-control" required>
+          <div class="invalid-feedback">Please enter the nationality.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="job">Job</label>
+          <input type="text" id="job" [(ngModel)]="newClient.job" name="job" class="form-control" required>
+          <div class="invalid-feedback">Please enter the job title.</div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="residence">Residence</label>
+          <input type="text" id="residence" [(ngModel)]="newClient.residence" name="residence" class="form-control" required>
+          <div class="invalid-feedback">Please enter the residence.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="email">Email</label>
+          <input type="email" id="email" [(ngModel)]="newClient.email" name="email" class="form-control" required>
+          <div class="invalid-feedback">Please enter a valid email address.</div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="salesMan">Sales Man</label>
+          <input type="text" id="salesMan" [(ngModel)]="newClient.salesMan" name="salesMan" class="form-control" required>
+          <div class="invalid-feedback">Please enter the salesman's name.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="customerClassification">Customer Classification</label>
+          <input type="text" id="customerClassification" [(ngModel)]="newClient.customerClassification" name="customerClassification" class="form-control" required>
+          <div class="invalid-feedback">Please enter the customer classification.</div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="mobile">Mobile</label>
+          <input type="text" id="mobile" [(ngModel)]="newClient.mobile" name="mobile" class="form-control" required>
+          <div class="invalid-feedback">Please enter a mobile number.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="telephoneOne">Telephone One</label>
+          <input type="text" id="telephoneOne" [(ngModel)]="newClient.telephoneOne" name="telephoneOne" class="form-control" required>
+          <div class="invalid-feedback">Please enter a telephone number.</div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="telephoneTwo">Telephone Two</label>
+          <input type="text" id="telephoneTwo" [(ngModel)]="newClient.telephoneTwo" name="telephoneTwo" class="form-control">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="whatsApp">WhatsApp</label>
+          <input type="text" id="whatsApp" [(ngModel)]="newClient.whatsApp" name="whatsApp" class="form-control">
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="customerSource">Customer Source</label>
+          <input type="text" id="customerSource" [(ngModel)]="newClient.customerSource" name="customerSource" class="form-control">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="description">Description</label>
+      <textarea id="description" [(ngModel)]="newClient.description" name="description" class="form-control" rows="3" required></textarea>
+      <div class="invalid-feedback">Please enter a description.</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Client</button>
+    <button type="button" class="btn btn-secondary ml-2" (click)="onCancel()">Cancel</button>
+  </form>
+</div>

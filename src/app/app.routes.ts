@@ -3,10 +3,13 @@ import { AddClientComponent } from './Components/add-client/add-client.component
 import { ClientsComponent } from './Components/clients/clients.component';
 import { CallsComponent } from './Components/calls/calls.component';
 import { UserTableComponent } from './Components/user-table/user-table.component';
+import { UpdateClientComponent } from './Components/update-client/update-client.component';
 
 export const routes: Routes = [
     {path:"AddClient",component:AddClientComponent},
     {path:"Clients",component:ClientsComponent},
     {path:"Calls",component:CallsComponent},
-    {path:"TBUser",component:UserTableComponent}
+    {path:"TBUser",component:UserTableComponent},
+    { path: 'EditClient/:id', component: UpdateClientComponent },
+
 ];

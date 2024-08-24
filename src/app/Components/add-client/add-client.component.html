@@ -1,4 +1,3 @@
-
 <form (submit)="addNewClient()" #addClientFrom="ngForm">
     <div class="container">
         <!-- First row -->
@@ -6,131 +5,105 @@
             <div class="form-group col-md-6 d-flex">
                 <label for="inputName" class="col-form-label col-md-4 mr-3">الاسم العميل</label>
                 <div class="col-md-8">
-                    <input type="text" [(ngModel)]="newClient.ClientName"
+                    <input type="text" [(ngModel)]="newClient.name"
                         name="name"
                         required
                         pattern="^[a-zA-Zأ-ي]{3,20}$"
                         #clieName="ngModel"
                         class="form-control" id="inputName" placeholder="اسم العميل">
-                       @if(clieName.invalid && clieName.touched)
-                       {
-                        <div class="text-danger">
-                           @if(clieName.errors?.['required'])
-                           {
+                    <div *ngIf="clieName.invalid && clieName.touched" class="text-danger">
+                        <div *ngIf="clieName.errors?.['required']">
                             <p>Name is required</p>
-                           }
-                            @if(clieName.errors?.['pattern'])
-                            {
-                                <p>Name must be at least 4 characters </p>
-                            }
                         </div>
-                       }
+                        <div *ngIf="clieName.errors?.['pattern']">
+                            <p>Name must be at least 3 characters</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group col-md-6 d-flex">
                 <label for="inputEmail" class="col-form-label col-md-4 mr-3">الايميل</label>
                 <div class="col-md-8">
-                    <input type="email" [(ngModel)]="newClient.Email" 
-                        name="Email"
-                        #email="ngModel"
+                    <input type="email" [(ngModel)]="newClient.email"
+                        name="email"
                         required
                         pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                        #email="ngModel"
                         class="form-control" id="inputEmail" placeholder="Email">
-                       @if(email.invalid && email.touched)
-                       {
-                        <div class="text-danger">
-                          @if(email.errors?.['required'])
-                          {
+                    <div *ngIf="email.invalid && email.touched" class="text-danger">
+                        <div *ngIf="email.errors?.['required']">
                             <p>Email is required</p>
-                          }
-                          @if(email.errors?.['pattern'])
-                          {
-                            <p> Enter Valid Email</p>
-                          }
                         </div>
-                       }
+                        <div *ngIf="email.errors?.['pattern']">
+                            <p>Enter a valid email</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-
-
+        <!-- Second row -->
         <div class="form-row mb-3">
             <div class="form-group col-md-6 d-flex">
-                <label for="inputNationality" class="col-form-label col-md-4 mr-3"> الجنسية</label>
+                <label for="inputNationality" class="col-form-label col-md-4 mr-3">الجنسية</label>
                 <div class="col-md-8">
-                    <input type="text" [(ngModel)]="newClient.Nationality"
-                        name="Nationality"
+                    <input type="text" [(ngModel)]="newClient.nationality"
+                        name="nationality"
                         required
                         #nationality="ngModel"
                         class="form-control" id="inputNationality" placeholder="مصري">
-                        @if(nationality.invalid && nationality.touched)
-                        {
-                            <div class="text-danger">
-
-                             @if(nationality.errors?.['required'])
-                             {
-                                <p>Nationality is required</p>
-                             }
-                            </div>
-                        }
+                    <div *ngIf="nationality.invalid && nationality.touched" class="text-danger">
+                        <div *ngIf="nationality.errors?.['required']">
+                            <p>Nationality is required</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group col-md-6 d-flex">
                 <label for="inputJob" class="col-form-label col-md-4 mr-3">الوظيفة</label>
                 <div class="col-md-8">
-                    <input type="text" [(ngModel)]="newClient.Job" 
-                        name="Job"
+                    <input type="text" [(ngModel)]="newClient.job"
+                        name="job"
                         required
                         #job="ngModel"
                         class="form-control" id="inputJob" placeholder="الوظيفة">
-                        @if(job.invalid && job.touched)
-                        {
-                            <div class="text-danger">
-                              @if(job.errors?.['required'])
-                              {
-                                <p>Job is required</p>
-                              }
-                            </div>
-                        }
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Second row -->
-        <div class="form-row mb-3">
-            <div class="form-group col-md-6 d-flex">
-                <label for="inputAddress" class="col-form-label col-md-4 mr-3">العنوان</label>
-                <div class="col-md-8">
-                    <input type="text" [(ngModel)]="newClient.Address"
-                        name="Address"
-                        required
-                        #address="ngModel"
-                        class="form-control" id="inputAddress" placeholder="1234 Main St">
-                        @if(address.invalid && address.touched)
-                        {
-                            <div class="text-danger">
-
-                              @if(address.errors?.['required'])
-                              {
-                                <p>address is required</p>
-                              }
-                            </div>
-                        }
-                </div>
-            </div>
-            <div class="form-group col-md-6 d-flex">
-                <label for="inputResidence" class="col-form-label col-md-4 mr-3">محل الاقامة</label>
-                <div class="col-md-8">
-                    <input type="text" [(ngModel)]="newClient.Residence" 
-                        name="Residence"
-                        class="form-control" id="inputResidence" placeholder="">
+                    <div *ngIf="job.invalid && job.touched" class="text-danger">
+                        <div *ngIf="job.errors?.['required']">
+                            <p>Job is required</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Third row -->
+        <div class="form-row mb-3">
+            <div class="form-group col-md-6 d-flex">
+                <label for="inputAddress" class="col-form-label col-md-4 mr-3">العنوان</label>
+                <div class="col-md-8">
+                    <input type="text" [(ngModel)]="newClient.address"
+                        name="address"
+                        required
+                        #address="ngModel"
+                        class="form-control" id="inputAddress" placeholder="1234 Main St">
+                    <div *ngIf="address.invalid && address.touched" class="text-danger">
+                        <div *ngIf="address.errors?.['required']">
+                            <p>Address is required</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-6 d-flex">
+                <label for="inputResidence" class="col-form-label col-md-4 mr-3">محل الاقامة</label>
+                <div class="col-md-8">
+                    <input type="text" [(ngModel)]="newClient.residence"
+                        name="residence"
+                        class="form-control" id="inputResidence" placeholder="">
+                </div>
+            </div>
+        </div>
+
+        <!-- Fourth row -->
         <div class="form-row mb-3">
             <div class="form-group col-md-6 d-flex">
                 <label for="inputDistrict" class="col-form-label col-md-4 mr-3">الحي</label>
@@ -143,23 +116,9 @@
             <div class="form-group col-md-6 d-flex">
                 <label for="inputSalesman" class="col-form-label col-md-4 mr-3">رجل المبيعات</label>
                 <div class="col-md-8">
-                    <input type="text" [(ngModel)]="newClient.SalesMan" name="SalesMan" class="form-control" id="inputSalesman">
-                </div>
-            </div>
-        </div>
-
-        <!-- Fourth row -->
-        <div class="form-row mb-3">
-            <div class="form-group col-md-6 d-flex">
-                <label for="inputDescription" class="col-form-label col-md-4 mr-3">التوصيف</label>
-                <div class="col-md-8">
-                    <input type="text" [(ngModel)]="newClient.description" name="description" class="form-control" id="inputDescription">
-                </div>
-            </div>
-            <div class="form-group col-md-6 d-flex">
-                <label for="inputCategory" class="col-form-label col-md-4 mr-3">تصنيف العميل</label>
-                <div class="col-md-8">
-                    <input type="text" [(ngModel)]="newClient.CustomerClassification" name="CustomerClassification" class="form-control" id="inputCategory">
+                    <input type="text" [(ngModel)]="newClient.salesMan"
+                        name="salesMan"
+                        class="form-control" id="inputSalesman">
                 </div>
             </div>
         </div>
@@ -167,28 +126,19 @@
         <!-- Fifth row -->
         <div class="form-row mb-3">
             <div class="form-group col-md-6 d-flex">
-                <label for="inputMobile" class="col-form-label col-md-4 mr-3">الموبيل</label>
+                <label for="inputDescription" class="col-form-label col-md-4 mr-3">التوصيف</label>
                 <div class="col-md-8">
-                    <input type="text" [(ngModel)]="newClient.mobile" 
-                    name="mobile" 
-                    #mob="ngModel"
-                     class="form-control" id="inputMobile">
-                     @if(mob.invalid && mob.touched)
-                     {
-                        <div class="text-danger">
-                         @if(mob.errors?.['required'])
-                         {
-                            <p> mobile is required</p>
-                         }
-                        </div>
-                     }
-
+                    <input type="text" [(ngModel)]="newClient.description"
+                        name="description"
+                        class="form-control" id="inputDescription">
                 </div>
             </div>
             <div class="form-group col-md-6 d-flex">
-                <label for="inputWhatsApp" class="col-form-label col-md-4 mr-3">واتساب</label>
+                <label for="inputCategory" class="col-form-label col-md-4 mr-3">تصنيف العميل</label>
                 <div class="col-md-8">
-                    <input type="text" [(ngModel)]="newClient.whatsApp" name="whatsApp" class="form-control" id="inputWhatsApp">
+                    <input type="text" [(ngModel)]="newClient.customerClassification"
+                        name="customerClassification"
+                        class="form-control" id="inputCategory">
                 </div>
             </div>
         </div>
@@ -196,15 +146,46 @@
         <!-- Sixth row -->
         <div class="form-row mb-3">
             <div class="form-group col-md-6 d-flex">
+                <label for="inputMobile" class="col-form-label col-md-4 mr-3">الموبيل</label>
+                <div class="col-md-8">
+                    <input type="text" [(ngModel)]="newClient.mobile"
+                        name="mobile"
+                        required
+                        #mob="ngModel"
+                        class="form-control" id="inputMobile">
+                    <div *ngIf="mob.invalid && mob.touched" class="text-danger">
+                        <div *ngIf="mob.errors?.['required']">
+                            <p>Mobile is required</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-6 d-flex">
+                <label for="inputWhatsApp" class="col-form-label col-md-4 mr-3">واتساب</label>
+                <div class="col-md-8">
+                    <input type="text" [(ngModel)]="newClient.whatsApp"
+                        name="whatsApp"
+                        class="form-control" id="inputWhatsApp">
+                </div>
+            </div>
+        </div>
+
+        <!-- Seventh row -->
+        <div class="form-row mb-3">
+            <div class="form-group col-md-6 d-flex">
                 <label for="inputPhone1" class="col-form-label col-md-4 mr-3">التليفون 1</label>
                 <div class="col-md-8">
-                    <input type="text" [(ngModel)]="newClient.telephoneOne" name="telephoneOne" class="form-control" id="inputPhone1">
+                    <input type="text" [(ngModel)]="newClient.telephoneOne"
+                        name="telephoneOne"
+                        class="form-control" id="inputPhone1">
                 </div>
             </div>
             <div class="form-group col-md-6 d-flex">
                 <label for="inputPhone2" class="col-form-label col-md-4 mr-3">التليفون 2</label>
                 <div class="col-md-8">
-                    <input type="text" [(ngModel)]="newClient.telephoneTwo" name="telephoneTwo" class="form-control" id="inputPhone2">
+                    <input type="text" [(ngModel)]="newClient.telephoneTwo"
+                        name="telephoneTwo"
+                        class="form-control" id="inputPhone2">
                 </div>
             </div>
         </div>
@@ -212,7 +193,4 @@
 
     <!-- Submit button -->
     <div class="form-group text-center">
-        <button type="submit" [disabled]="addClientFrom.invalid" class="btn btn-primary">submit</button>
-        <button type="button" (click)="onCancel()" class="btn btn-secondary ml-3">Cancel</button>
-    </div>
-</form>
+        <button type="submit" [disabled]="addClientFrom.invalid" class="btn btn-primary">Submit</button>

@@ -5,12 +5,13 @@ import { IClient } from '../../models/iclient';
 import { APIClientsService } from '../../service/apiclients.service';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CallsComponent } from '../calls/calls.component';
+import { UpdateClientComponent } from '../update-client/update-client.component';
 
 @Component({
   selector: 'app-clients',
   templateUrl: './clients.component.html',
   standalone: true,
-  imports: [CommonModule, FormsModule,RouterOutlet,RouterLink,CallsComponent], 
+  imports: [CommonModule, FormsModule,RouterOutlet,RouterLink,CallsComponent,UpdateClientComponent], 
   styleUrls: ['./clients.component.css'],
 })
 export class ClientsComponent implements OnInit {

@@ -28,6 +28,12 @@ export class APIClientsService {
     const url = `http://localhost:5161/api/Calls?clientId=${clientId}&pageNumber=${pageNumber}&pageSize=${pageSize}`;
     return this.http.get<ICallDto[]>(url);
   }
+
+  getClientById(clientId:number)
+  {
+    const url = `http://localhost:5161/api/client/${clientId}`; 
+    return this.http.get(url);
+  }
   addClient(newClie: IClientAdd): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -35,4 +41,13 @@ export class APIClientsService {
 
     return this.http.post('http://localhost:5161/api/client/AddClient', JSON.stringify(newClie), { headers });
   }
+  updateClient(clientId: number, updateClient: IClientAdd):Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    const url = `http://localhost:5161/api/client/update/${clientId}`;
+    return this.http.put(url, JSON.stringify(updateClient), { headers });
+  }
+   
+
   }
